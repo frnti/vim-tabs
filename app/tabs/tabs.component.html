@@ -1,0 +1,6 @@
+<div class="tabs__titles" #content>
+    <ng-content select="tab"></ng-content>
+</div>
+<div class="tabs__content" *ngIf="activeTab">
+    <ng-container [ngTemplateOutlet]="activeTab.tabContentTemplate"></ng-container>
+</div>
