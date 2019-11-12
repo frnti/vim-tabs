@@ -20,8 +20,7 @@ import { TabContentComponent } from './tab-content/tab-content.component';
 export class TabComponent implements OnInit {
   tabContentTemplate: TemplateRef<void>;
   isActive = false;
-  id = Math.random();
-  private _activeTabIdSubscribtion;
+  private _activeTabSubscribtion;
 
   constructor(
       @Inject(forwardRef(() => TabsComponent)) private tabsComponent: TabsComponent,
@@ -30,17 +29,17 @@ export class TabComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._activeTabIdSubscribtion = this.tabsService.activeTabId$.subscribe(activeTabId => {
-      this.isActive = activeTabId === this.id;
+    this._activeTabSubscribtion = this.tabsService.activeTab$.subscribe(activeTab => {
+      this.isActive = activeTab === this;
       this.cdr.detectChanges();
     });
   }
   ngOnDestroy() {
-    this._activeTabIdSubscribtion.unsubscribe();
+    this._activeTabSubscribtion.unsubscribe();
   }
 
-  onTabTitleClick(id) {
-    this.tabsService.setActiveTab(id);
+  onTabTitleClick(tab: TabComponent) {
+    this.tabsService.setActiveTab(tab);
   }
 
 }

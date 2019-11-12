@@ -1,18 +1,21 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { TabComponent } from './tab/tab.component';
+
+type NullableTabComponent = TabComponent | null;
 
 @Injectable({
   providedIn: 'root'
 })
 export class TabsService {
-  activeTabId$: BehaviorSubject<number> =  new BehaviorSubject(0);
-  activeTabChanged: EventEmitter<number> = new EventEmitter<number>();
+  activeTab$: BehaviorSubject<NullableTabComponent> =  new BehaviorSubject(null);
+  activeTabChanged: EventEmitter<NullableTabComponent> = new EventEmitter<NullableTabComponent>();
 
   constructor() { }
 
-  setActiveTab(id: number) {
-    this.activeTabChanged.emit(id);
-    this.activeTabId$.next(id);
+  setActiveTab(tab: NullableTabComponent) {
+    this.activeTabChanged.emit(tab);
+    this.activeTab$.next(tab);
   }
 
 }

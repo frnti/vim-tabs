@@ -1,3 +1,3 @@
-<div class="tabs__title" [ngClass]="{'tabs__title--active': isActive}"  (click)="onTabTitleClick(id)">
+<div class="tabs__title" [ngClass]="{'tabs__title--active': isActive}"  (click)="onTabTitleClick(this)">
     <ng-content select="tab-title" ></ng-content>
 </div>
