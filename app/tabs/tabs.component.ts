@@ -14,7 +14,7 @@ export class TabsComponent implements OnInit, AfterContentInit {
     }
 
     ngAfterContentInit() {
-        this.activeTab = this.tabs.find(tab => tab.id === this.tabs.first.id);
+        this.activeTab = this.tabs.first;
         this.tabsService.setActiveTab(this.tabs.first.id);
         this.tabs.changes.subscribe(next => {
             if (next.length === 1 || (next.length !== 0 && !this.isActiveTabExists())) {
