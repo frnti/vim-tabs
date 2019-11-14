@@ -9,12 +9,10 @@ type NullableTabComponent = TabComponent | null;
 })
 export class TabsService {
   activeTab$: BehaviorSubject<NullableTabComponent> =  new BehaviorSubject(null);
-  activeTabChanged: EventEmitter<NullableTabComponent> = new EventEmitter<NullableTabComponent>();
 
   constructor() { }
 
   setActiveTab(tab: NullableTabComponent) {
-    this.activeTabChanged.emit(tab);
     this.activeTab$.next(tab);
   }
 
